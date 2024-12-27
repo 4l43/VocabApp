@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Match Russian Words</title>
+  <link href="https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap" rel="stylesheet">
+</head>
+  <style>
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: rgb(19 31 36);
+      color: #ffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      max-width: 100vb;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #fff transparent;
+      border: 1px solid rgb(55 70 79);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      width: 200px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    li {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid rgb(55 70 79);
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    li:hover {
+      background: rgb(55 70 79);
+      border-color: #87cefa;
+    }
+
+    .selected {
+      background: #d3eaff;
+      border-color: #1e90ff;
+      color: #040404;
+    }
+
+    .incorrect {
+      background: #ffdddd !important;
+      border-color: #ff5c5c !important;
+      animation: shake 0.4s;
+    }
+
+    .found {
+      background: #d4edda !important;
+      border-color: #28a745 !important;
+      color: #6c757d;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #d4edda;
+      font-weight: 600;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Match the Russian Words</h1>
+  <div class="container">
+    <ul id="russian"></ul>
+    <ul id="english"></ul>
+  </div>
+  <script src="RussianExercise.js"></script>
+</body>
+</html>
