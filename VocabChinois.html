@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulaire Chinois</title>
+    <style>
+        /* Styles CSS pour la page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #vocabulaire-container {
+            width: 80%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .vocab-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .vocab-item h3 {
+            font-size: 24px;
+            color: #333;
+        }
+        .vocab-item p {
+            font-size: 18px;
+            color: #666;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vocabulaire Chinois</h1>
+    <div id="vocabulaire-container">
+        <!-- Les mots seront insérés ici -->
+    </div>
+
+    <script>
+        // Charger le fichier JSON et afficher le vocabulaire
+        function chargerVocabulaire() {
+            console.log('Chargement du vocabulaire...');
+            fetch('vocabulaire.json')  // Charger le fichier JSON
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Fichier JSON non trouvé');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Vérification si les données existent
+                    if (data && Array.isArray(data) && data.length > 0) {
+                        afficherVocabulaire(data);
+                    } else {
+                        console.error('Les données sont vides ou mal formatées');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur de chargement du fichier JSON:', error);
+                });
+        }
+
+        // Fonction pour afficher dynamiquement les mots du vocabulaire
+        function afficherVocabulaire(vocabulaire) {
+            const container = document.getElementById('vocabulaire-container');
+            container.innerHTML = '';  // Vider le conteneur avant d'ajouter les éléments
+            
+            vocabulaire.forEach(item => {
+                const vocabItem = document.createElement('div');
+                vocabItem.classList.add('vocab-item');
+                
+                vocabItem.innerHTML = `
+                    <h3>${item.mot_chinois}</h3>
+                    <p><strong>Traduction:</strong> ${item.traduction}</p>
+                    <p><strong>Phonétique:</strong> ${item.phonetic}</p>
+                    <button onclick="jouerSon('${item.phonetic}')">Écouter</button>
+                `;
+                
+                container.appendChild(vocabItem);
+            });
+        }
+
+        // Fonction pour jouer la prononciation via l'API Web Speech
+        function jouerSon(phonetic) {
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = phonetic;
+            msg.lang = "zh-CN";  // Langue chinoise
+            window.speechSynthesis.speak(msg);
+        }
+
+        // Appeler la fonction pour charger le vocabulaire lors du chargement de la page
+        window.onload = chargerVocabulaire;
+    </script>
+</body>
+</html>

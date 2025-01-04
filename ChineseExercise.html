@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Match Chinese Words</title>
+  <link href="" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: rgb(19 31 36);
+      color: #ffff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      max-width: 100vw;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #fff transparent;
+      border: 1px solid rgb(55 70 79);
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      width: 200px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    li {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid rgb(55 70 79);
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    li:hover {
+      background: rgb(55 70 79);
+      border-color: #87cefa;
+    }
+
+    .selected {
+      background: #d3eaff;
+      border-color: #1e90ff;
+      color: #040404;
+    }
+
+    .incorrect {
+      background: #ffdddd !important;
+      border-color: #ff5c5c !important;
+      animation: shake 0.4s;
+    }
+
+    .found {
+      background: #d4edda !important;
+      border-color: #28a745 !important;
+      color: #6c757d;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #d4edda;
+      font-weight: 600;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Match the Chinese Words</h1>
+  <div class="container">
+    <ul id="chinese"></ul>
+    <ul id="french"></ul>
+  </div>
+
+  <script>
+    const chineseList = document.getElementById("chinese");
+    const frenchList = document.getElementById("french");
+    const messageContainer = document.createElement("div");
+    messageContainer.classList.add("message");
+    document.body.appendChild(messageContainer);
+
+    let selectedChinese = null;
+    let selectedfrench = null;
+    let remainingPairs = 0;
+
+    // Mélanger un tableau
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // Sélectionner un sous-ensemble aléatoire
+    function getRandomSubset(array, size) {
+      const shuffled = shuffle([...array]);
+      return shuffled.slice(0, size);
+    }
+
+// Créer des éléments de liste
+function createList(listElement, items, key, type) {
+    listElement.innerHTML = ""; // Réinitialiser la liste
+    items.forEach(item => {
+        const li = document.createElement("li");
+
+        // Afficher le mot chinois avec phonétique ou la traduction en français selon le type
+        if (type === "chinese") {
+            li.textContent = `${item.mot_chinois} (${item.phonetic})`; // Mot chinois + phonétique
+        } else {
+            li.textContent = item.traduction; // Traduction en français
+        }
+
+        li.classList.add("word");
+
+        // Gestion des clics sur les mots
+        li.addEventListener("click", () => {
+            if (type === "chinese") playChineseWord(item.mot_chinois); // Jouer le mot chinois
+            handleSelection(li, type); // Gérer la sélection
+        });
+
+        listElement.appendChild(li);
+    });
+}
+
+
+
+    // Lecture d'un mot chinois
+    function playChineseWord(word) {
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = "zh-CN"; // Langue chinoise
+        window.speechSynthesis.speak(utterance);
+      } else {
+        console.warn("La synthèse vocale n'est pas prise en charge par ce navigateur.");
+      }
+    }
+
+    // Gestion de la sélection
+    function handleSelection(element, type) {
+      if (element.classList.contains("found")) return; // Ignorer si déjà trouvé
+
+      if (type === "chinese") {
+        if (selectedChinese) selectedChinese.classList.remove("selected");
+        selectedChinese = element;
+        selectedChinese.classList.add("selected");
+      } else {
+        if (selectedfrench) selectedfrench.classList.remove("selected");
+        selectedfrench = element;
+        selectedfrench.classList.add("selected");
+      }
+
+      // Vérifier la correspondance
+      if (selectedChinese && selectedfrench) {
+        const chineseWord = selectedChinese.textContent.split(" (")[0]; // Extraire le mot chinois sans phonétique
+        const frenchWord = selectedfrench.textContent;
+
+        const isCorrect = currentWords.some(
+          pair => pair.mot_chinois === chineseWord && pair.traduction === frenchWord
+        );
+
+        if (isCorrect) {
+          selectedChinese.classList.add("found");
+          selectedfrench.classList.add("found");
+          remainingPairs--;
+
+          // Réinitialiser la sélection
+          selectedChinese.classList.remove("selected");
+          selectedfrench.classList.remove("selected");
+          selectedChinese = null;
+          selectedfrench = null;
+
+          // Vérifier si la manche est terminée
+          if (remainingPairs === 0) {
+            showMessage("Bravo ! Une nouvelle manche commence...");
+            setTimeout(startNewRound, 2000);
+          }
+        } else {
+          selectedChinese.classList.add("incorrect");
+          selectedfrench.classList.add("incorrect");
+
+          setTimeout(() => {
+            selectedChinese.classList.remove("selected", "incorrect");
+            selectedfrench.classList.remove("selected", "incorrect");
+            selectedChinese = null;
+            selectedfrench = null;
+          }, 1000);
+        }
+      }
+    }
+
+    // Afficher un message
+    function showMessage(message) {
+      messageContainer.textContent = message;
+      setTimeout(() => {
+        messageContainer.textContent = "";
+      }, 2000);
+    }
+
+    // Démarrer une nouvelle manche
+    let currentWords = [];
+    function startNewRound() {
+      // Fichier JSON en ligne
+      fetch("vocabulaire.json")
+        .then(response => response.json())
+        .then(data => {
+          currentWords = getRandomSubset(data, 5); // Sélectionner 5 mots aléatoires
+          const shuffledfrench = shuffle(currentWords.map(word => word.traduction));
+
+          remainingPairs = currentWords.length;
+
+          createList(chineseList, currentWords, "mot_chinois", "chinese");
+          createList(frenchList, shuffledfrench, "traduction", "french");
+        })
+        .catch(error => console.error("Erreur lors du chargement du fichier JSON :", error));
+    }
+
+    // Lancer la première manche
+    startNewRound();
+
+    //debug
+    function afficherElements() {
+        fetch('vocabulaire.json') // Remplacez par le chemin correct de votre fichier JSON
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    console.log(`Mot chinois: ${item.mot_chinois}, Traduction: ${item.traduction}, Phonétique: ${item.phonetic}`);
+                });
+            })
+            .catch(error => {
+                console.error("Erreur lors du chargement du fichier JSON :", error);
+            });
+    }
+    
+  </script>
+</body>
+</html>
