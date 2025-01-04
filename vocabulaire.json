@@ -1,0 +1,238 @@
+[
+    {
+      "mot_chinois": "来",
+      "traduction": "venir",
+      "phonetic": "lái"
+    },
+    {
+      "mot_chinois": "做",
+      "traduction": "faire",
+      "phonetic": "zuò"
+    },
+    {
+      "mot_chinois": "说",
+      "traduction": "dire",
+      "phonetic": "shuō"
+    },
+    {
+      "mot_chinois": "看",
+      "traduction": "voir",
+      "phonetic": "kàn"
+    },
+    {
+      "mot_chinois": "听",
+      "traduction": "entendre",
+      "phonetic": "tīng"
+    },
+    {
+      "mot_chinois": "吃",
+      "traduction": "manger",
+      "phonetic": "chī"
+    },
+    {
+      "mot_chinois": "喝",
+      "traduction": "boire",
+      "phonetic": "hē"
+    },
+    {
+      "mot_chinois": "拿",
+      "traduction": "prendre",
+      "phonetic": "ná"
+    },
+    {
+      "mot_chinois": "给",
+      "traduction": "donner",
+      "phonetic": "gěi"
+    },
+    {
+      "mot_chinois": "爱",
+      "traduction": "aimer",
+      "phonetic": "ài"
+    },
+    {
+      "mot_chinois": "讨厌",
+      "traduction": "détester",
+      "phonetic": "tǎo yàn"
+    },
+    {
+      "mot_chinois": "想",
+      "traduction": "penser",
+      "phonetic": "xiǎng"
+    },
+    {
+      "mot_chinois": "知道",
+      "traduction": "savoir",
+      "phonetic": "zhī dào"
+    },
+    {
+      "mot_chinois": "理解",
+      "traduction": "comprendre",
+      "phonetic": "lǐ jiě"
+    },
+    {
+      "mot_chinois": "工作",
+      "traduction": "travailler",
+      "phonetic": "gōng zuò"
+    },
+    {
+      "mot_chinois": "玩",
+      "traduction": "jouer",
+      "phonetic": "wán"
+    },
+    {
+      "mot_chinois": "读",
+      "traduction": "lire",
+      "phonetic": "dú"
+    },
+    {
+      "mot_chinois": "写",
+      "traduction": "écrire",
+      "phonetic": "xiě"
+    },
+    {
+      "mot_chinois": "说话",
+      "traduction": "parler",
+      "phonetic": "shuō huà"
+    },
+    {
+      "mot_chinois": "人",
+      "traduction": "personne",
+      "phonetic": "rén"
+    },
+    {
+      "mot_chinois": "时间",
+      "traduction": "temps",
+      "phonetic": "shí jiān"
+    },
+    {
+      "mot_chinois": "年",
+      "traduction": "année",
+      "phonetic": "nián"
+    },
+    {
+      "mot_chinois": "天",
+      "traduction": "jour",
+      "phonetic": "tiān"
+    },
+    {
+      "mot_chinois": "东西",
+      "traduction": "chose",
+      "phonetic": "dōng xī"
+    },
+    {
+      "mot_chinois": "男人",
+      "traduction": "homme",
+      "phonetic": "nán rén"
+    },
+    {
+      "mot_chinois": "女人",
+      "traduction": "femme",
+      "phonetic": "nǚ rén"
+    },
+    {
+      "mot_chinois": "孩子",
+      "traduction": "enfant",
+      "phonetic": "hái zi"
+    },
+    {
+      "mot_chinois": "世界",
+      "traduction": "monde",
+      "phonetic": "shì jiè"
+    },
+    {
+      "mot_chinois": "生命",
+      "traduction": "vie",
+      "phonetic": "shēng mìng"
+    },
+    {
+      "mot_chinois": "手",
+      "traduction": "main",
+      "phonetic": "shǒu"
+    },
+    {
+      "mot_chinois": "眼睛",
+      "traduction": "oeil",
+      "phonetic": "yǎn jīng"
+    },
+    {
+      "mot_chinois": "工作",
+      "traduction": "travail",
+      "phonetic": "gōng zuò"
+    },
+    {
+      "mot_chinois": "部分",
+      "traduction": "partie",
+      "phonetic": "bù fèn"
+    },
+    {
+      "mot_chinois": "地方",
+      "traduction": "lieu",
+      "phonetic": "dì fāng"
+    },
+    {
+      "mot_chinois": "情况",
+      "traduction": "cas",
+      "phonetic": "qíng kuàng"
+    },
+    {
+      "mot_chinois": "点",
+      "traduction": "point",
+      "phonetic": "diǎn"
+    },
+    {
+      "mot_chinois": "政府",
+      "traduction": "gouvernement",
+      "phonetic": "zhèng fǔ"
+    },
+    {
+      "mot_chinois": "公司",
+      "traduction": "entreprise",
+      "phonetic": "gōng sī"
+    },
+    {
+      "mot_chinois": "家庭",
+      "traduction": "famille",
+      "phonetic": "jiā tíng"
+    },
+    {
+      "mot_chinois": "我",
+      "traduction": "I",
+      "phonetic": "wǒ"
+    },
+    {
+      "mot_chinois": "你",
+      "traduction": "You (singular)",
+      "phonetic": "nǐ"
+    },
+    {
+      "mot_chinois": "他",
+      "traduction": "He",
+      "phonetic": "tā"
+    },
+    {
+      "mot_chinois": "她",
+      "traduction": "She",
+      "phonetic": "tā"
+    },
+    {
+      "mot_chinois": "我们",
+      "traduction": "We",
+      "phonetic": "wǒ men"
+    },
+    {
+      "mot_chinois": "你们",
+      "traduction": "You (plural or formal)",
+      "phonetic": "nǐ men"
+    },
+    {
+      "mot_chinois": "他们",
+      "traduction": "They (masculine)",
+      "phonetic": "tā men"
+    },
+    {
+      "mot_chinois": "她们",
+      "traduction": "They (feminine)",
+      "phonetic": "tā men"
+    }
+  ]
+  
